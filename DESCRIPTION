@@ -1,0 +1,12 @@
+Package: empatica
+Title: Read Physiologic Signal Data Recorded with an Empatica Device.
+Version: 0.1.0
+Description: This package contains functions for reading physiologic data recorded
+    with an Empatica device.
+Authors@R: c(person("Andreas", "Henelius", role = c("aut", "cre"), email =
+    "andreas.henelius@iki.fi"))
+Depends:
+    R (>= 3.0.2),
+    XML
+License: MIT + file LICENSE
+URL: https://github.com/bwrc/empatica-r
