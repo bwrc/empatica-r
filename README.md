@@ -15,7 +15,7 @@ First install the `devtools`-package and load it:
 
 You can now install the `empatica` package:
 ```
-   install_github("bwrc/empatica")
+   install_github("bwrc/empatica-r")
 ```
 
 Usage
