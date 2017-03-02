@@ -76,9 +76,8 @@ read_empatica_ibi <- function(filename, signal_names = c("time", "ibi")) {
         colnames(data) <- signal_names
 
     out                            <- organise_data(data)
-    timevec                        <- cumsum(out[["ibi"]][["data"]])
 
-    out[["ibi"]][["time_vector"]]  <- c(0, timevec[-length(timevec)])
+    out[["ibi"]][["t"]]  <- out[["time"]][["data"]]
     out[["ibi"]][["samplingrate"]] <- NULL
     out[["time"]]                  <- NULL
 
