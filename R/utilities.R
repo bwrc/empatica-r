@@ -98,7 +98,7 @@ read_empatica_events <- function(f) {
     if (length(tmp) > 0)
         events <- data.frame("id"        = seq.int(length(tmp)),
                              "time_raw"  = tmp,
-                             "timestamp" = as.POSIXct(tmp, origin="1970-01-01"),
+                             "timestamp" = as.POSIXct(tmp, tz="GMT", origin="1970-01-01"),
                              "timedelta" = 0)
     else
         events <- data.frame("id"        = numeric(),
