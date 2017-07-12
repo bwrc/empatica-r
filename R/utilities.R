@@ -76,9 +76,8 @@ read_empatica_ibi <- function(filename, signal_names = c("time", "ibi")) {
         colnames(data) <- signal_names
 
     out                            <- organise_data(data)
-    timevec                        <- cumsum(out[["ibi"]][["data"]])
 
-    out[["ibi"]][["time_vector"]]  <- c(0, timevec[-length(timevec)])
+    out[["ibi"]][["t"]]  <- out[["time"]][["data"]]
     out[["ibi"]][["samplingrate"]] <- NULL
     out[["time"]]                  <- NULL
 
@@ -99,7 +98,7 @@ read_empatica_events <- function(f) {
     if (length(tmp) > 0)
         events <- data.frame("id"        = seq.int(length(tmp)),
                              "time_raw"  = tmp,
-                             "timestamp" = as.POSIXct(tmp, origin="1970-01-01"),
+                             "timestamp" = as.POSIXct(tmp, tz = "GMT", origin = "1970-01-01"),
                              "timedelta" = 0)
     else
         events <- data.frame("id"        = numeric(),

@@ -66,13 +66,14 @@ read.empatica <- function(filename, header.only = FALSE) {
         recording$properties$length <- 0
 
     recording$properties$time.start.raw <- header
-    recording$properties$time.start     <- as.POSIXct(header, origin="1970-01-01")
+    recording$properties$time.start     <- as.POSIXct(header, tz = "GMT", origin = "1970-01-01")
 
     recording$properties$time.stop.raw  <- header + recording$properties$length
-    recording$properties$time.stop      <- as.POSIXct(header, origin="1970-01-01") + as.difftime(recording$properties$length, units = "secs")
+    recording$properties$time.stop      <- as.POSIXct(header, tz = "GMT", origin = "1970-01-01") + as.difftime(recording$properties$length, units = "secs")
 
     ## Handle events
-    recording$events$timedelta <- as.numeric(difftime(recording$events$timestamp, recording$properties$time.start, units = "secs"))
+    if (length(recording$events) > 0)
+        recording$events$timedelta <- as.numeric(difftime(recording$events$timestamp, recording$properties$time.start, units = "secs"))
 
     ## Set device information
     recording$properties$device.type    <- "Empatica"
